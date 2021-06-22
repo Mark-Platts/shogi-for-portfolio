@@ -1,0 +1,502 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+body  {
+  background-color: #160b01;
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: 100vh; /* 100% Full-height */
+    width: 5vw; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #442303;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    z-index: 10;
+}
+
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #dfb600;
+}
+
+.insidebar {
+  padding-left: 10px
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  padding-left: 5vw;
+}
+
+#boardset {
+  display: grid;
+  grid-gap: 1vw 1vw;
+}
+
+.bigViewGrid {
+  grid-template-columns: 0.3vw 18.4vw 46vw 18.4vw auto;
+  grid-template-rows: 0.3vw 18.4vw 9.2vw 18.4vw auto;
+}
+
+.smlViewGrid {
+  grid-template-columns: 0.3vh 8vh 81vh auto;
+  grid-template-rows: 0.3vh 40vh 40vh 10vh 10vh auto;
+}
+
+.bigBoardLoc {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  grid-row-end: 5;
+}
+
+.smlBoardLoc {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+#BrdBk {
+   background-image: url("images/BrdBk.png");
+   background-color: #cccccc;
+   /*border: 1px solid black;*/
+   border-collapse:collapse;
+   width: 100%;
+   height: 100%;
+}
+
+.bigGoteHLoc {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+#GHB {
+  background-image: url("images/BrdBk.png");
+  background-color: #cccccc;
+  width: 100%;
+  height: 100%;
+  border-collapse:collapse;
+}
+
+.bigSenteHLoc {
+    grid-column-start: 4;
+    grid-row-start: 4;
+}
+
+.smlSenteHLoc {
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+#SHB {
+  background-image: url("images/BrdBk.png");
+  background-color: #cccccc;
+  width: 100%;
+  height: 100%;
+  border-collapse:collapse;
+}
+/* Side Table: Small/Big Height/Width */
+.STSW {
+  width: 5%;
+}
+.STBW {
+  width: 10%
+}
+.STSH {
+  height: 5%;
+}
+.STBH {
+  height:10%;
+}
+
+.empty {
+   empty-cells:hide;
+}
+
+.allcell {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+.Brdcorner {
+   width: 5%;
+   height: 5%;
+   max-width:5%;
+   min-width:5%;
+   max-height:5%;
+   min-height:5%;
+}
+
+.Brdtopbottom {
+   height: 5%;
+   width: 5%;
+   max-width:5%;
+   min-width:5%;
+   max-height:5%;
+   min-height:5%;
+}
+
+.Brdleftright {
+   width: 5%;
+   max-width:5%;
+   min-width:5%;
+}
+
+.Brdspace {
+   height: 10%;
+   width: 10%;
+   max-width:10%;
+   min-width:10%;
+   max-height:10%;
+   min-height:10%;
+}
+
+.BrdspaceH {
+   width: 10%;
+   max-width:10%;
+   min-width:10%;
+}
+
+.RHPanel {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border:10px solid;
+  border-color:#442303;
+  background-color: #fcfce0;
+  overflow:auto;
+}
+
+.boardsetT {
+  border-spacing:2px;
+  border-style:solid;
+  border-width:2px;
+  border-color:white;
+  empty-cells:show;
+}
+
+/* layout for the overlay that covers the board and containts the promo box */
+#promotionoverlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  grid-gap: 1vw 1vw;
+  padding-left: 5vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+/* layout for the promo box */
+#promobox {
+  grid-column-start: 2;
+  grid-row-start: 3;
+  background-color: rgb(48, 27, 7);
+  z-index: 3; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+/* layout for the overlay that covers the board and containts the settings box */
+#settingsoverlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  grid-gap: 1vw 1vw;
+  padding-left: 5vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+/* layout for the settings box */
+#settingsbox {
+  background-color: rgb(48, 27, 7);
+  z-index: 3; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.bigSettingBoxLoc {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  grid-row-end: 5;
+}
+
+.smlSettingBoxLoc {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+#gameinfobox {
+  position:relative;
+  background-color: rgb(48, 27, 7);
+}
+
+.bigGameInfBxLoc {
+  grid-column-start: 4;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+.smlGameInfBxLoc {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 5;
+}
+
+.leftTabLoc {
+  background-color: rgb(22, 5, 117);
+  position: absolute;
+  width: 50%;
+  height: 12%;
+  z-index: 1;
+}
+
+#leftTabPg {
+  z-index: 1;
+}
+
+.leftTabPgLoc {
+  background-color: rgb(22, 5, 117);
+  position: absolute;
+  top:12%;
+  width: 100%;
+  height: 70%;
+}
+
+.movesSheetLoc{
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: rgb(231, 240, 233);
+  position: absolute;
+  left: 5%;
+  top: 15%;
+  height: 65%;
+  width: 90%;
+  /* right: 5%;
+  bottom: 5%; */
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.rightTabLoc {
+  background-color: rgb(5, 117, 33);
+  position: absolute;
+  left:50%;
+  width: 50%;
+  height: 12%;
+  z-index: 1;
+}
+
+#rightTabPg {
+  z-index: -1;
+}
+
+.rightTabPgLoc {
+  background-color: rgb(5, 117, 33);
+  position: absolute;
+  top:12%;
+  width: 100%;
+  height: 70%;
+}
+
+.gibB1Loc{
+  background-color: rgb(80, 80, 80);
+  position: absolute;
+  left:3.125%;
+  bottom:3.125%;
+  width: 18.75%;
+  height: 12%;
+  z-index: 1;
+}
+.gibB2Loc{
+  background-color: rgb(80, 80, 80);
+  position: absolute;
+  left:28.125%;
+  bottom:3.125%;
+  width: 18.75%;
+  height: 12%;
+  z-index: 1;
+}
+.gibB3Loc{
+  background-color: rgb(80, 80, 80);
+  position: absolute;
+  left:53.125%;
+  bottom:3.125%;
+  width: 18.75%;
+  height: 12%;
+  z-index: 1;
+}
+.gibB4Loc{
+  background-color: rgb(80, 80, 80);
+  position: absolute;
+  left:78.125%;
+  bottom:3.125%;
+  width: 18.75%;
+  height: 12%;
+  z-index: 1;
+}
+
+#confMoveBox {
+  display: none;
+  position: absolute;
+  background-color: rgb(26, 168, 38);
+  width: 100%;
+  height: 18%;
+  top: 82%;
+  z-index: 4;
+}
+
+#confMoveB1 {
+  display: none;
+  position: absolute;
+  background-color: rgb(90, 90, 90);
+  width: 37.5%;
+  height: 4.5%;
+  left: 6.25%;
+  top: 88.75%;
+  z-index: 5;
+}
+
+#confMoveB2 {
+  display: none;
+  position: absolute;
+  background-color: rgb(90, 90, 90);
+  width: 37.5%;
+  height: 4.5%;
+  left: 56.25%;
+  top: 88.75%;
+  z-index: 5;
+}
+
+#playerinfobox {
+  position:relative;
+  background-color: rgb(48, 27, 7);
+}
+
+.bigPlayerinfbxLoc {
+  grid-column-start: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.smlPlayerinfbxLoc {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 4;
+}
+
+
+.gotInfBxLoc{
+  background-color: rgb(26, 16, 2);
+  position: absolute;
+  top: 8.333%;
+  left: 8.333%;
+  width: 83.33%;
+  height: 33.33%;
+}
+
+.gotInfBxPcLoc{
+  background-color: rgb(48, 28, 0);
+  position: absolute;
+  top: 12.5%;
+  left: 12.5%;
+  width: 25%;
+  height: 25%;
+  z-index: 1;
+}
+
+.gotInfBxNmLoc{
+  background-color: rgb(48, 28, 0);
+  position: absolute;
+  top: 12.5%;
+  left: 41.66%;
+  width: 45.833%;
+  height: 8.333%;
+  z-index: 1;
+}
+.gotInfBxNm2Loc{
+  background-color: rgb(48, 28, 0);
+  position: absolute;
+  bottom: 62.5%;
+  left: 41.66%;
+  width: 45.833%;
+  height: 8.333%;
+  z-index: 1;
+}
+
+.senInfBxLoc{
+  background-color: rgb(26, 16, 2);
+  position: absolute;
+  bottom: 8.333%;
+  left: 8.333%;
+  width: 83.33%;
+  height: 33.33%;
+}
+
+.senInfBxPcLoc{
+  background-color: rgb(48, 28, 0);
+  position: absolute;
+  bottom: 12.5%;
+  left: 12.5%;
+  width: 25%;
+  height: 25%;
+  z-index: 1;
+}
+.senInfBxNmLoc{
+  background-color: rgb(48, 28, 0);
+  position: absolute;
+  top: 62.5%;
+  left: 41.66%;
+  width: 45.833%;
+  height: 8.333%;
+  z-index: 1;
+}
+.senInfBxNm2Loc{
+  background-color: rgb(48, 28, 0);
+  position: absolute;
+  bottom: 12.5%;
+  left: 41.66%;
+  width: 45.833%;
+  height: 8.333%;
+  z-index: 1;
+}
+
+.playerInfFnt{
+  color: white;
+}
+
+.disPcSz{
+  width: 100%;
+  height: 100%;
+}
+.plFlgs{
+  float: right;
+  width: 15%;
+  height: 15%;
+}

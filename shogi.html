@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="shogi.css">
+    <script src="shogi.js"></script>
+    <title> Moves Tester </title>
+  </head>
+
+  <body>
+
+    <div id="mySidenav" class="sidenav" onmouseover="navbutton()" onmouseout="navbutton()">
+
+      <a href="#" id="TopList">Pr</a>
+      <a href="#">S</a>
+      <a href="#">C</a>
+      <a href="#">C</a>
+
+      <br>
+      
+      <label for="whoViewChoose" class="insidebar">whoView:</label>
+      <br>
+      <select id="whoViewChoose" class="insidebar" onchange = "changewhoView()">
+        <option value="S">Sente</option>
+        <option value="G">Gote</option>
+      </select>
+
+      <br>
+
+      <label for="promovonB" class="insidebar">promovon</label>
+      <br>
+      <button type="button" class="insidebar" id = "promovonB" onclick="promovon()">promovon</button>
+
+      <br>
+
+      <label for="confMoveOpen" class="insidebar">confMoveOnOff</label>
+      <br>
+      <button type="button" class="insidebar" id = "confMoveOpen" onclick="confMoveOnOff()">confMoveOnOff</button>
+
+      <br>
+
+      <label for="settingsonoffB" class="insidebar">Settings</label>
+      <br>
+      <button type="button" class="insidebar" id = "settingsonoffB" onclick="settingsonoff()">Settings</button>
+
+      <br>
+
+      <label for="blankgame" class="insidebar">Blank State</label>
+      <br>
+      <button type="button" class="insidebar" id = "blankGame" onclick="blankGame()">blankGame</button>
+
+      <br>
+
+
+      <label for="blankgame" class="insidebar">Setup Game</label>
+      <br>
+      <button type="button" class="insidebar" id = "setupGame" onclick="setupGame()">setupGame</button>
+
+      <br>
+
+      <label for="whichBrdViewChoose" class="insidebar">whichBrdViewChoose:</label>
+      <br>
+      <select id="whichBrdViewChoose" class="insidebar" onchange = "whichBrdViewChoose()">
+        <option value="N">Normal</option>
+        <option value="S">Small</option>
+      </select>
+
+      <table class="insidebar" style="color: white;">
+        <tr>
+          <td id="whoGoTab">S</td>
+        </td>
+      </table>
+
+    </div>
+
+    
+    <div id="main"> <!-- Holds everything that isn't the navbar (and possible fututre ad space) -->
+      <div id="boardset" class="bigViewGrid"> <!-- Sets out the grid for the larger blocks -->
+        <script>createBoardSet()</script>
+        <div id="playerinfobox" class="bigPlayerinfbxLoc"> <!-- Places a div for player info -->
+          <!-- <div id="PIBinnerGrid" class="bigPIBinnerGrid"></div>  Creates a grid in the player info box -->
+          <div id="goteInfoBox" class="gotInfBxLoc"></div>
+          <div id="goteInfoBoxPc" class="gotInfBxPcLoc"></div>
+          <div id="goteInfoBoxNm" class="gotInfBxNmLoc"></div>
+          <div id="goteInfoBoxNm2" class="gotInfBxNm2Loc"></div>
+          <div id="senteInfoBox" class="senInfBxLoc"></div>
+          <div id="senteInfoBoxPc" class="senInfBxPcLoc"></div>
+          <div id="senteInfoBoxNm" class="senInfBxNmLoc"></div>
+          <div id="senteInfoBoxNm2" class="senInfBxNm2Loc"></div>
+        </div>
+        <div id="gameinfobox" class="bigGameInfBxLoc"> <!-- Places a div for game/side info -->
+          <!-- <div id="GIinnerGrid" class="bigGIinnerGrid"></div> Creates a grid in the game/side info box -->
+          <div id="leftTab" class="leftTabLoc" onclick="leftTabOp()"></div>
+          <div id="leftTabPg" class="leftTabPgLoc"></div>
+          <div id="movesSheet" class="movesSheetLoc"></div>
+          <div id="rightTab" class="rightTabLoc" onclick="rightTabOp()"></div>
+          <div id="rightTabPg" class="rightTabPgLoc"></div>
+          <div id="gibB1" class="gibB1Loc" onclick="gibB1Fn()"></div>
+          <div id="gibB2" class="gibB2Loc" onclick="gibB2Fn()"></div>
+          <div id="gibB3" class="gibB3Loc" onclick="gibB3Fn()"></div>
+          <div id="gibB4" class="gibB4Loc" onclick="gibB4Fn()"></div>
+          <div id="confMoveBox" ></div>
+          <div id="confMoveB1" onclick="confMoveDeny()"></div>
+          <div id="confMoveB2" onclick="confMoveAccept()"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="promotionoverlay" class="bigViewGrid">
+      <div id="promobox">
+        <button type="button" id = "promovoffB" onclick="promoyes()">Yes</button>
+        <button type="button" id = "promovoffB" onclick="promovoff()">No</button>
+      </div>
+    </div>
+
+    <div id="settingsoverlay" class="bigViewGrid">
+      <div id="settingsbox" class="bigSettingBoxLoc">
+        <label for="PieceLangChoose">Pieces:</label>
+        <select id="PieceLangChoose" onchange = "changePieceType()">
+          <option value="N">Japanese</option>
+          <option value="E">English</option>
+        </select>
+        <br>
+        <label for="possMovesHighlights">Show possible moves:</label>
+        <select id="possMovesHighlights" onchange = "changepossMovesHighlights()">
+          <option value=0>Off</option>
+          <option value=1>On</option>
+        </select>
+        <br>
+        <label for="confMoveYN">Show possible moves:</label>
+        <select id="confMoveYN" onchange = "changeConfMoveYN()">
+          <option value=0>Off</option>
+          <option value=1>On</option>
+        </select>
+      </div>
+    </div>
+
+    
+
+<script>
+setupGame()
+plInfToHTML(senPlayerInf, gotPlayerInf)
+</script>
+
+
+
+  </body>
+
+</html>
